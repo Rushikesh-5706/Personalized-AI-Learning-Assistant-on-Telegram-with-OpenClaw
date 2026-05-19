@@ -1,0 +1,65 @@
+{
+  "agent": {
+    "name": "study-assistant",
+    "defaultModel": "ollama/gemma2:2b"
+  },
+  "models": {
+    "providers": {
+      "ollama": {
+        "enabled": true,
+        "baseUrl": "http://ollama:11434",
+        "models": ["gemma2:2b"]
+      }
+    }
+  },
+  "tools": {
+    "webSearch": {
+      "enabled": true,
+      "provider": "duckduckgo"
+    },
+    "webFetch": {
+      "enabled": true
+    },
+    "memory": {
+      "enabled": true,
+      "persistToDisk": true,
+      "storagePath": "/root/.openclaw/memory"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true,
+        "package": "@openclaw/plugin-telegram",
+        "config": {
+          "botToken": "${env.TELEGRAM_BOT_TOKEN}"
+        }
+      }
+    }
+  },
+  "skills": {
+    "directories": [
+      "/root/.openclaw/skills"
+    ]
+  },
+  "automation": {
+    "standingOrders": [
+      {
+        "name": "trigger-user-onboarding",
+        "condition": "memory.user_profile_{{user.id}} does not exist",
+        "runSkill": "user-onboarding"
+      }
+    ],
+    "cron": [
+      {
+        "name": "nightly-tech-brief",
+        "schedule": "0 21 * * *",
+        "timezone": "${env.USER_TIMEZONE}",
+        "session": "isolated",
+        "message": "Run the daily-quiz skill for the primary user. Retrieve their stored profile using the user ID stored in memory under the key primary_user_id. Generate and send the daily tech brief to them on Telegram.",
+        "announce": true,
+        "channel": "telegram"
+      }
+    ]
+  }
+}
