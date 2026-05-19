@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: openclaw-ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+
+  agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rushi5706/openclaw-telegram-assistant:latest
+    container_name: openclaw-agent
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - USER_TIMEZONE=${USER_TIMEZONE}
+      - OLLAMA_BASE_URL=http://ollama:11434
+    volumes:
+      - agent_memory:/home/openclaw/.openclaw/memory
+    restart: unless-stopped
+    networks:
+      - openclaw-net
+
+networks:
+  openclaw-net:
+    driver: bridge
+
+volumes:
+  ollama_data:
+    driver: local
+  agent_memory:
+    driver: local
