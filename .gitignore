@@ -1,0 +1,27 @@
+# Environment and secrets
+.env
+*.env.local
+*.env.production
+
+# OpenClaw runtime data
+.openclaw/memory/
+.openclaw/logs/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Docker
+*.tar
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
