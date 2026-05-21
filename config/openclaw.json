@@ -39,7 +39,7 @@
   },
   "skills": {
     "directories": [
-      "/root/.openclaw/skills"
+      "/home/openclaw/.openclaw/skills"
     ]
   },
   "automation": {
