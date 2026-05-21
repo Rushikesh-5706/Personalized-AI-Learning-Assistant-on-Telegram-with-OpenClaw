@@ -5,5 +5,4 @@ node_modules
 .gitignore
 .dockerignore
 README.md
-*.md
 .DS_Store
