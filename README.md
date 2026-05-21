@@ -65,23 +65,23 @@ consults skill definitions, calls external tools, and reads and writes persisten
  ┌──────────────────────────────────────────────────────────────────────┐
  │                  OpenClaw Gateway  ─  Your Machine                   │
  │                                                                      │
- │  ┌──────────────────┐    ┌─────────────────────────────────────┐    │
- │  │  Cron Scheduler  │    │           Agent Core (LLM)          │◄───┤
- │  │  ─────────────── │───►│         Ollama · gemma2:2b          │    │
- │  │  0 21 * * *      │    │                                     │    │
- │  │  per user TZ     │    └──────┬──────────────────────┬───────┘    │
- │  └──────────────────┘           │                      │            │
- │                                 │ (3) reads skill      │ (6) r/w    │
- │  ┌──────────────────┐           ▼                      ▼            │
- │  │ Telegram Plugin  │  ┌─────────────────┐   ┌───────────────────┐ │
- │  │ ─────────────── │  │  Skill Registry  │   │ Persistent Memory │ │
- │  │ persistent conn  │  │ ─────────────── │   │ ─────────────────  │ │
- │  │ recv / send msgs │  │ user-onboarding │   │ user_profile_{id} │ │
- │  └────────┬─────────┘  │ SKILL.md        │   │ recent_topics_{id}│ │
- │           │            │                 │   │                   │ │
- │           │            │ daily-quiz      │   │ persisted to disk │ │
- │           │            │ SKILL.md        │   │ survives restarts │ │
- │           │            └─────────────────┘   └───────────────────┘ │
+ │  ┌──────────────────┐    ┌─────────────────────────────────────┐     │
+ │  │  Cron Scheduler  │    │           Agent Core (LLM)          │ ◄───┤
+ │  │  ─────────────── │───►│         Ollama · gemma2:2b          │     │
+ │  │  0 21 * * *      │    │                                     │     │ 
+ │  │  per user TZ     │    └──────┬──────────────────────┬───────┘     │
+ │  └──────────────────┘           │                      │             │
+ │                                 │ (3) reads skill      │ (6) r/w     │
+ │  ┌──────────────────┐           ▼                      ▼             │
+ │  │ Telegram Plugin  │  ┌─────────────────┐   ┌───────────────────┐   │
+ │  │ ───────────────  │  │  Skill Registry │   │ Persistent Memory │   │
+ │  │ persistent conn  │  │ ─────────────── │   │ ───────────────── │   │
+ │  │ recv / send msgs │  │ user-onboarding │   │ user_profile_{id} │   │
+ │  └────────┬─────────┘  │ SKILL.md        │   │ recent_topics_{id}│   │
+ │           │            │                 │   │                   │   │
+ │           │            │ daily-quiz      │   │ persisted to disk │   │
+ │           │            │ SKILL.md        │   │ survives restarts │   │
+ │           │            └─────────────────┘   └───────────────────┘   │
  └───────────┼──────────────────────────────────────────────────────────┘
              │ (7) send formatted brief
              ▼
