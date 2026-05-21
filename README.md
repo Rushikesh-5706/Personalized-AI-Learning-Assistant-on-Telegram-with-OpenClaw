@@ -55,12 +55,12 @@ consults skill definitions, calls external tools, and reads and writes persisten
  │    Telegram App     │                        │  DuckDuckGo Search   │
  └──────────┬──────────┘                        └──────────┬───────────┘
             │ (1) send message                             │ (5) results
-            ▼                                             │
+            ▼                                              │
  ┌──────────────────────┐                      ┌──────────┴───────────┐
  │    Telegram API      │                      │   web_search tool    │
  │    (cloud / ext.)    │                      │   web_fetch tool     │
  └──────────┬───────────┘                      └──────────┬───────────┘
-            │ (2) forward to gateway                       │ (4) invoked by agent
+            │ (2) forward to gateway                      │ (4) invoked by agent
             ▼                                             │
  ┌──────────────────────────────────────────────────────────────────────┐
  │                  OpenClaw Gateway  ─  Your Machine                   │
