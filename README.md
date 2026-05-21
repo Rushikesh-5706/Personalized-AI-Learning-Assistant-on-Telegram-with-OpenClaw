@@ -341,26 +341,38 @@ the `daily-quiz` skill. The workflow proceeds as follows:
 The message format is fixed and uses Telegram Markdown:
 
 ```
-Emoji Your Daily Tech Brief — Date
+🦞 Your Daily Tech Brief — Date
 
-Separator
-Emoji Interview Questions
-Separator
+━━━━━━━━━━━━━━━━━━━━
+🧠 Interview Questions
+━━━━━━━━━━━━━━━━━━━━
 
 Q1 [Type — Domain]
 Question text
 
-...
+Q2 [Type — Domain]
+Question text
 
-Separator
-Emoji Today's Tidbits
-Separator
+Q3 [Type — Domain]
+Question text
 
-Bullet point tidbit
+Q4 [Type — Domain]
+Question text
 
-...
+Q5 [Type — Domain]
+Question text
 
-Separator
+━━━━━━━━━━━━━━━━━━━━
+💡 Today's Tidbits
+━━━━━━━━━━━━━━━━━━━━
+
+Tidbit one
+
+Tidbit two
+
+Tidbit three
+
+━━━━━━━━━━━━━━━━━━━━
 Reply answers to get feedback, or more for extra questions.
 ```
 
