@@ -23,7 +23,7 @@
     "memory": {
       "enabled": true,
       "persistToDisk": true,
-      "storagePath": "/root/.openclaw/memory"
+      "storagePath": "/home/openclaw/.openclaw/memory"
     }
   },
   "plugins": {
