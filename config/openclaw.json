@@ -56,7 +56,7 @@
         "schedule": "0 21 * * *",
         "timezone": "${env.USER_TIMEZONE}",
         "session": "isolated",
-        "message": "Run the daily-quiz skill for the primary user. Retrieve their stored profile using the user ID stored in memory under the key primary_user_id. Generate and send the daily tech brief to them on Telegram.",
+        "message": "Run the daily-quiz skill for the primary user. Retrieve their stored profile from memory using the key primary_user_id. The user's timezone is stored in their profile under the timezone field — use that timezone when formatting the date in the message. Generate and send the daily tech brief to them on Telegram.",
         "announce": true,
         "channel": "telegram"
       }
